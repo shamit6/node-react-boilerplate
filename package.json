@@ -5,10 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "nodemon": "^1.17.5"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development babel-node server/index.js",
+    "start": "cross-env NODE_ENV=development nodemon server/index.js",
     "build:client": "cross-env NODE_ENV=production webpack --config client/webpack.config.js -p --env=prod --progress --colors",
     "build:server": "cross-env NODE_ENV=production babel server -d dist",
     "serve": "cross-env NODE_ENV=production node dist/index.js"
