@@ -1,0 +1,24 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3e3e3f;
+  color: white;
+  font-size: 2em;
+}
+
+.content {
+  flex: 4;
+  background-image: url('../../assets/joe.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
