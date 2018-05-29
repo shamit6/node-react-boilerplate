@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 import style from './style.css'
-import Router from '../../containers/Router'
 
-class App extends Component {
+export default class Loader extends Component {
   render() {
     return (
-      <div className={classnames(style.app)}>
-        <Router/>
+      <div className={classnames(style.loader)}>
+        Loading...
       </div>
     )
   }
 }
-
-export default App
