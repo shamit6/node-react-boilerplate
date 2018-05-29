@@ -1,0 +1,6 @@
+.content {
+  flex: 4;
+  background-image: url('../../assets/joe.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
