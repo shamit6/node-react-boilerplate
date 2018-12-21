@@ -30,7 +30,7 @@
     "object-shorthand": [2, "always"],
     "prefer-spread": 1,
     "prefer-template": 1,
-    "prettier/prettier": [1],
+    "prettier/prettier": 1,
     "require-yield": 2,
     "jsx-quotes": 1,
     "react/forbid-prop-types": 1,
@@ -62,8 +62,7 @@
     "react/jsx-wrap-multilines": 1
   },
   "extends": [
-  "eslint:recommended",
+    "eslint:recommended",
     "plugin:react/recommended",
-
   ]
 }
