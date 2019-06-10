@@ -1,4 +1,3 @@
-// let rucksack = require('rucksack-css')
 let webpack = require('webpack')
 let path = require('path')
 let NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development')
@@ -60,7 +59,15 @@ const config = {
         include: path.resolve(__dirname, 'client'),
         use: [
           'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]___[hash:base64:5]',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[local]___[hash:base64:5]',
+            },
+          },
           'postcss-loader',
         ],
       },
@@ -84,27 +91,56 @@ const config = {
       {
         test: /\.svg(\?.*)?$/,
         include: path.resolve(__dirname, 'client', 'assets'),
-        loader: 'url-loader?limit=1024h&context=images&outputPath=images&name=[name].[ext]',
-        // loader: 'svg-url-loader?limit=1024&noquotes&context=images&outputPath=images&name=[name].[ext]',
+        loader: 'url-loader',
+        options: {
+          limit: '1024h',
+          context: 'images',
+          outputPath: 'images',
+          name: '[name].[ext]',
+        },
       },
       {
         test: /\.png$/,
-        loader: 'url-loader?limit=8192&mimetype=image/png&context=images&outputPath=images&name=[name].[ext]',
-        // include: path.resolve(__dirname, 'client', 'assets'),
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          mimetype: 'image/png',
+          context: 'images',
+          outputPath: 'images',
+          name: '[name].[ext]',
+        },
       },
       {
         test: /\.gif$/,
-        loader: 'url-loader?limit=8192&mimetype=image/gif&context=images&outputPath=images&name=[name].[ext]',
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          mimetype: 'image/gif',
+          context: 'images',
+          outputPath: 'images',
+          name: '[name].[ext]',
+        },
         include: path.resolve(__dirname, 'client', 'assets'),
       },
       {
         test: /\.jpg$/,
-        loader: 'url-loader?limit=8192&mimetype=image/jpg&context=images&outputPath=images&name=[name].[ext]',
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          mimetype: 'image/jpg',
+          context: 'images',
+          outputPath: 'images',
+          name: '[name].[ext]',
+        },
         include: path.resolve(__dirname, 'client', 'assets'),
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=1024&mimetype=application/font-woff',
+        loader: 'url-loader',
+        options: {
+          limit: 1024,
+          mimetype: 'application/font-woff',
+        },
       },
       {
         test: /\.(svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,

@@ -4,6 +4,6 @@
   "delay": "100",
   "watch": ["server/*"],
   "execMap": {
-     "js": "babel-node"
+    "js": "babel-node"
   }
 }
