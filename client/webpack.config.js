@@ -1,6 +1,26 @@
-let webpack = require('webpack')
-let path = require('path')
-let NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development')
+const webpack = require('webpack')
+const path = require('path')
+const {GenerateSW} = require('workbox-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
+
+const NODE_ENV = JSON.stringify(process.env.NODE_ENV || 'development')
+const manifest = {
+  name: 'Countdown',
+  short_name: 'MyCountdown',
+  description: 'My awesome Countdown Progressive Web App!',
+  background_color: '#ffffff',
+  crossorigin: 'use-credentials',
+  icons: [
+    {
+      src: path.resolve(__dirname, 'client/assets/joe.png'),
+      sizes: [96, 128, 192, 256, 384, 512],
+    },
+    {
+      src: path.resolve(__dirname, 'client/assets/joe.png'),
+      size: '1024x1024',
+    },
+  ],
+}
 
 let publicPath
 let devtool
@@ -9,6 +29,11 @@ let plugins = [
   new webpack.DefinePlugin({
     'process.env': {NODE_ENV},
   }),
+  new GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true,
+  }),
+  new WebpackPwaManifest(manifest),
 ]
 
 if (NODE_ENV === '"development"') {
