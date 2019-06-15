@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
+import style from './style.css'
 
 const done = item => new Date(item.time) - Date.now() <= 0
 const changeInterval = 251
+const formatNumber = num => {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
 
 export default class CountDown extends Component {
   constructor(props) {
@@ -30,18 +34,21 @@ export default class CountDown extends Component {
 
   timeRemaining(item) {
     if (done(item)) {
-      return 0
+      return 'Done 🥂'
     }
-    return Math.floor((new Date(item.time) - Date.now()) / 1000)
+    return formatNumber(Math.ceil((new Date(item.time) - Date.now()) / 1000))
   }
 
   render() {
     const {item, remove} = this.props
 
     return (
-      <div>
-        <button onClick={() => remove(item)}>-</button>
-        {item.name} {this.timeRemaining(item)}
+      <div className={style.countDownItem}>
+        <button className={style.removeButton} onClick={() => remove(item)}>
+          🗑️
+        </button>
+        <div className={style.itemName}>{item.name}</div>
+        <div className={style.itemTime}>{this.timeRemaining(item)}</div>
       </div>
     )
   }

@@ -2,8 +2,10 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import {devMiddleware, hotMiddleware} from './webpack.js'
 import path from 'path'
+import cors from 'cors'
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json())
 
 if (process.env.NODE_ENV === 'development') {

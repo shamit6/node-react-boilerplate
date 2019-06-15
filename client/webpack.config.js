@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {GenerateSW} = require('workbox-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 
@@ -26,6 +27,10 @@ let publicPath
 let devtool
 let hotloaderEntries = []
 let plugins = [
+  new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, 'client/index.html'),
+    favicon: path.resolve(__dirname, 'client/assets/joe.png'),
+  }),
   new webpack.DefinePlugin({
     'process.env': {NODE_ENV},
   }),
@@ -64,8 +69,6 @@ const config = {
   context: path.resolve(__dirname, './client'),
   entry: {
     bundle: [...hotloaderEntries, './index.js'],
-    html: './index.html',
-    vendor: [...hotloaderEntries, 'react', 'react-dom'],
   },
   output: {
     path: path.resolve(__dirname, './static'),
@@ -75,10 +78,6 @@ const config = {
   },
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        loader: 'file-loader?name=[name].[ext]',
-      },
       {
         test: /\.css$/,
         include: path.resolve(__dirname, 'client'),

@@ -4,6 +4,7 @@ import style from './style.css'
 import CountDownList from '../CountDownList'
 import CountDownPanel from '../CountDownPanel'
 import Loader from '../Loader'
+import InstallButton from '../InstallButton'
 
 export default class Content extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class Content extends Component {
 
   render() {
     const {list, loading} = this.state
+    const {installable, installApp} = this.props.globalProps
 
     if (loading) {
       return <Loader />
@@ -52,6 +54,7 @@ export default class Content extends Component {
       <div className={classnames(style.content)}>
         <CountDownPanel add={this.addItem.bind(this)} />
         <CountDownList list={list} remove={this.removeItem.bind(this)} />
+        {installable && <InstallButton install={installApp} />}
       </div>
     )
   }

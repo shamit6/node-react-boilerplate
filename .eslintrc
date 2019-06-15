@@ -30,6 +30,7 @@
     "prettier/prettier": 1,
     "require-yield": 2,
     "jsx-quotes": 1,
+    "react/display-name": 0,
     "react/forbid-prop-types": 1,
     "react/jsx-boolean-value": 1,
     "react/jsx-closing-bracket-location": 1,
@@ -57,7 +58,9 @@
     "react/jsx-filename-extension": [1, {"extensions": [".js"]}],
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
-    "react/jsx-wrap-multilines": 1
+    "react/jsx-wrap-multilines": 1,
+    "react/require-extension": 1,
+    "react/wrap-multilines": 1
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"]
 }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import style from './style.css'
 
 function toDatetimeLocal(date) {
   const ten = function(i) {
@@ -28,16 +29,23 @@ export default class CountDownPanel extends Component {
 
   render() {
     return (
-      <div>
-        <label>Name</label>
-        <input ref={name => (this.nameEl = name)} type="text" />
-        <label>Name</label>
-        <input
-          defaultValue={toDatetimeLocal(new Date(Date.now() + 20000))}
-          ref={time => (this.timeEl = time)}
-          type="datetime-local"
-        />
-        <button onClick={this.handleClick.bind(this)}>Add</button>
+      <div className={style.countDownPanel}>
+        <div className={style.inputBox}>
+          <label className={style.label}>Name</label>
+          <input className={style.input} ref={name => (this.nameEl = name)} type="text" />
+        </div>
+        <div className={style.inputBox}>
+          <label className={style.label}>Time</label>
+          <input
+            className={style.input}
+            defaultValue={toDatetimeLocal(new Date(Date.now() + 20000))}
+            ref={time => (this.timeEl = time)}
+            type="datetime-local"
+          />
+        </div>
+        <button className={style.addButton} onClick={this.handleClick.bind(this)}>
+          Add
+        </button>
       </div>
     )
   }

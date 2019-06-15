@@ -4,6 +4,6 @@ import style from './style.css'
 
 export default class Header extends Component {
   render() {
-    return <header className={classnames(style.header)}>Welcome to Joe boilplate project</header>
+    return <header className={classnames(style.header)}>Countdown</header>
   }
 }
