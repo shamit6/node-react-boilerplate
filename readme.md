@@ -77,6 +77,17 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
+### installable by button
+
+### push notifications
+
+### ngrok
+
+### functional react
+
+must install `npm i -g ngrok`
+`ngrok http 3000`
+
 https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
 
 ## intro

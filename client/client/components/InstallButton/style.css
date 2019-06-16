@@ -1,10 +1,10 @@
 .installButton {
   position: fixed;
-  right: 1em;
+  right: 50%;
   bottom: 1em;
   border-radius: 50%;
-  height: 7em;
-  width: 7em;
+  height: 5em;
+  width: 5em;
   background: #767676;
   cursor: pointer;
   text-decoration: none;

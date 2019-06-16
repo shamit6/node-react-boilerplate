@@ -16,11 +16,13 @@ export default class Content extends Component {
   }
 
   componentDidMount() {
-    const countdowns = JSON.parse(localStorage.getItem('countdowns'))
-    this.setState({
-      list: countdowns,
-      loading: false,
-    })
+    setTimeout(() => {
+      const countdowns = JSON.parse(localStorage.getItem('countdowns'))
+      this.setState({
+        list: countdowns,
+        loading: false,
+      })
+    }, 100)
   }
 
   persist(list) {
