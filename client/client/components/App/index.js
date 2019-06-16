@@ -36,13 +36,14 @@ export default () => {
   useEffect(registerServiceWorker.bind(registerServiceWorker, setInstallable), [])
 
   const installApp = async () => {
-    // Show prompt to user
+    // TODO: Show prompt to user
     installPrompt.prompt()
 
+    // TODO: Get user choice for installation and log it
     const installed = await installPrompt.userChoice
     console.log(`User installed app: ${installed}`)
 
-    // Clean up. Prompt cannot be reused.
+    // TODO: Clean up. Prompt cannot be reused.
     installPrompt = null
     setInstallable(false)
   }

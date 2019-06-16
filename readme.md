@@ -126,9 +126,13 @@ Once registered you now have a PWA that has caching for all assets, offline serv
 
 Test it using Application -> Service Workers tab in Chorme devtools.
 
-### 4) Installable using a button
+### 4) Install app using a button
+
+#### Save the installation event for later use
 
 ```js
+// client/client/components/App/index.js
+
 let installPrompt
 
 window.addEventListener('beforeinstallprompt', event => {
@@ -141,6 +145,15 @@ window.addEventListener('beforeinstallprompt', event => {
   // Show or enable install button in your app
   setInstallable(true)
 })
+```
+
+#### Use it in install app function
+
+```js
+// client/client/components/App/index.js
+
+// use installPrompt variable
+// and fill the TODOs
 ```
 
 Now run `yarn run prod` and get your smartphone out, then go to the URL `ngrok http 300` generated and install the app using the Install App button
