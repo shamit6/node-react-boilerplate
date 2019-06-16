@@ -1,35 +1,51 @@
 # PWA workshop
 
-https://codelabs.developers.google.com/codelabs/your-first-pwapp/#0
+This is an easy and modern way to do [Google's your-first-pwapp](https://codelabs.developers.google.com/codelabs/your-first-pwapp)
 
-manifest - https://developers.google.com/web/fundamentals/web-app-manifest/
+## Pre-requisites
 
-service worker - https://developers.google.com/web/fundamentals/primers/service-workers/
+`git clone git@github.com:deanshub/pwa-workshop.git`
 
-We're going to make it easy using webpack and workbox
+`npm i -g ngrok`
 
-## steps
+`npm i -g yarn` (or use the npm commands)
 
-### Install & Configure the workbox webpack plugin
+## Introduction
 
-`yarn add --dev workbox-webpack-plugin`
+Congratulations, you have a web app and it's responsive but since Eran Shabi doesn't want to access it through the browser, we want to make it easier for him by making it a PWA and installing it on our smartphone (just like any native app).
 
-```js
-// client/webpack.config.js
+PWA is based on 2 main features:
 
-// require the plugin
-const {GenerateSW} = require('workbox-webpack-plugin')
+- [Manifest File](https://developers.google.com/web/fundamentals/web-app-manifest/) - tells the container how the app should behave when it's native
+- [Service Worker](https://developers.google.com/web/fundamentals/primers/service-workers/) - A script separated from the web page that has rich APIs that bridges between the web app and everything that's outside of it.
 
-// add the plugin to the list of webpack plugins
-new GenerateSW({
-  clientsClaim: true,
-  skipWaiting: true,
-}),
-```
+We're going make it easy by generating both with [webpack](https://webpack.js.org/) and [Workbox](https://developers.google.com/web/tools/workbox/)
 
-### Install & Configure the webpack pwa manifest plugin
+### 1) Start your dev environment
+
+Start the server in dev mode
+
+`yarn start`
+
+Now you can start exploring the web app code. When you're ready to test it on your mobile smartphone:
+
+you'll need to have a production build
+
+`yarn run prod`
+
+and https url
+
+`ngrok http 3000`
+
+this will generate a public URL (use the https one)
+
+### 2) Setup the PWA manifest
+
+#### Install [webpack pwa manifest plugin](https://github.com/arthurbergmz/webpack-pwa-manifest)
 
 `yarn add --dev webpack-pwa-manifest`
+
+#### Configure the plugin to generate the manifest file
 
 ```js
 // client/webpack.config.js
@@ -60,10 +76,39 @@ const manifest = {
 new WebpackPwaManifest(manifest),
 ```
 
-### register the service worker
+### 3) Setup the Service Worker
+
+#### Install [workbox webpack plugin](https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin)
+
+`yarn add --dev workbox-webpack-plugin`
+
+#### Configure the plugin to generate the Service Worker
 
 ```js
+// client/webpack.config.js
+
+// require the plugin
+const {GenerateSW} = require('workbox-webpack-plugin')
+
+// add the plugin to the list of webpack plugins
+new GenerateSW({
+  clientsClaim: true, // Control any existing client when the Service Worker starts
+  skipWaiting: true, // Skip the wait on update of the Service Worker
+}),
+```
+
+This will tell Webpack to generate service-worker.js file with a few features activated (like caching, offline, updating and other)
+
+### 3) Register the Service Worker
+
+Now let's register the Service Worker we just created.
+
+```js
+// client/client/components/App/index.js
+
+// Checks weather Service Workers are supported
 if ('serviceWorker' in navigator) {
+  // On load register the Worker and get the registration object
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/service-worker.js')
@@ -77,19 +122,32 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
-### installable by button
+Once registered you now have a PWA that has caching for all assets, offline serving, service worker updating and in Chrome 67 and earlier automatically showing the prompt to install as native app.
 
-### push notifications
+Test it using Application -> Service Workers tab in Chorme devtools.
 
-### ngrok
+### 4) Installable using a button
 
-### functional react
+```js
+let installPrompt
 
-must install `npm i -g ngrok`
-`ngrok http 3000`
+window.addEventListener('beforeinstallprompt', event => {
+  // Don't show the install popup without the user asking for it (disabling auto prompt)
+  event.preventDefault()
 
-https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+  // Save event for later
+  installPrompt = event
 
-## intro
+  // Show or enable install button in your app
+  setInstallable(true)
+})
+```
 
-desktop - https://developers.google.com/web/progressive-web-apps/desktop
+Now run `yarn run prod` and get your smartphone out, then go to the URL `ngrok http 300` generated and install the app using the Install App button
+
+### 5) DIY: Notifications API
+
+Try this one by your self,
+When the time arrives, make sure the app notifies the user.
+
+https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications
