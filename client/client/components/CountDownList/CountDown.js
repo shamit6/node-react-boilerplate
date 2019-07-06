@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import style from './style.css'
+import CircleProgressBar from './CircleProgressBar'
 
 const done = item => new Date(item.time) - Date.now() <= 0
 const changeInterval = 251
@@ -36,7 +37,19 @@ export default class CountDown extends Component {
     if (done(item)) {
       return 'Done 🥂'
     }
-    return formatNumber(Math.ceil((new Date(item.time) - Date.now()) / 1000))
+    const seconds = Math.ceil((new Date(item.time) - Date.now()) / 1000)
+    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(minutes / 60)
+    const days = Math.floor(hours / 24)
+    if (days > 1) {
+      return `${formatNumber(days)} Days`
+    } else if (hours > 1) {
+      return `${formatNumber(hours)} Hours`
+    } else if (minutes > 1) {
+      return `${formatNumber(minutes)} Minutes`
+    } else {
+      return `${formatNumber(seconds)} Seconds`
+    }
   }
 
   render() {
@@ -48,7 +61,7 @@ export default class CountDown extends Component {
           🗑️
         </button>
         <div className={style.itemName}>{item.name}</div>
-        <div className={style.itemTime}>{this.timeRemaining(item)}</div>
+        <CircleProgressBar progress={90} title={item.name} text={this.timeRemaining(item)} color="rgb(104, 214, 198)" />
       </div>
     )
   }

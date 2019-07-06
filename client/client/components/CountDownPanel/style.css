@@ -1,7 +1,7 @@
 .countDownPanel {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1em;
   justify-content: center;
 }
 
@@ -9,7 +9,7 @@
   flex: 1;
   display: flex;
   align-items: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5em 0;
 }
 
 .label {
@@ -18,7 +18,7 @@
 
 .input {
   flex: 1;
-  height: 2.5em;
+  height: 2em;
   font-size: 1.2em;
   font-weight: bold;
   font-family: monospace;
@@ -35,5 +35,5 @@
   padding: 0.3em 0.7em;
   border: 0;
   box-shadow: 2px 2px 3px #2f2f2f;
-  margin: 0.5em;
+  margin: 0 0.5em;
 }

@@ -1,6 +1,21 @@
-.countDownItem {
-  margin: 0.5em 0;
+.countDownList{
+  height: 100%;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  align-content: stretch;
+  overflow-y: scroll;
+}
+
+.countDownItem {
+  margin: 0.5em;
+   box-shadow: 1px 1px 3px black;
+  min-width: 45vw;
+  min-height: 33.3333vh;
+  flex: 1;
+  display: flex;
+  background-color: #3e3e3f;
+  color: white;
 }
 
 .removeButton {
