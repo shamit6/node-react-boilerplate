@@ -4,15 +4,13 @@
     "browser": true,
     "node": true,
     "es6": true,
+    "jest": true,
     "commonjs": true
   },
-  "plugins": [
-    "react",
-    "prettier"
-  ],
+  "plugins": ["react", "prettier"],
   "rules": {
     "no-console": 0,
-    "indent": ["error", 2, { "ignoredNodes": ["JSXElement *"] }],
+    "indent": ["error", 2, {"ignoredNodes": ["JSXElement *"]}],
     "quotes": [2, "single"],
     "semi": [2, "never"],
     "comma-dangle": [1, "always-multiline"],
@@ -39,7 +37,7 @@
     "react/jsx-curly-spacing": 1,
     "react/jsx-indent": [2, 2],
     "react/jsx-indent-props": 1,
-    "react/jsx-max-props-per-line": [1, {"maximum":2}],
+    "react/jsx-max-props-per-line": [1, {"maximum": 2}],
     "react/jsx-no-bind": 0,
     "react/jsx-no-duplicate-props": 1,
     "react/jsx-no-undef": 1,
@@ -56,13 +54,10 @@
     "react/prefer-es6-class": 1,
     "react/prop-types": 0,
     "react/react-in-jsx-scope": 1,
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "react/jsx-filename-extension": [1, {"extensions": [".js"]}],
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "react/jsx-wrap-multilines": 1
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-  ]
+  "extends": ["eslint:recommended", "plugin:react/recommended"]
 }
